@@ -1,9 +1,9 @@
 import React from 'react';
 import loadable from '@loadable/component';
 
-const MainPage = loadable(() => import('../containers/Main/Main'));
-const AuthPage = loadable(() => import('../containers/Auth/Auth'));
-const NotFoundPage = loadable(() => import('../components/NotFound/NotFound'));
+const MainPage = loadable(() => import('../containers/Main'));
+const AuthPage = loadable(() => import('../containers/Auth'));
+const NotFoundPage = loadable(() => import('../pages/NotFound/NotFound'));
 
 export const routes = [
     {
