@@ -1,9 +1,10 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { } from '../reducers';
+import { notification, auth } from '../reducers';
 
 const rootReducer = combineReducers({
-   // reducers list
+    notification: notification,
+    auth: auth
 });
 
 const index = () => {
