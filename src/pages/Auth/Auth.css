@@ -7,6 +7,20 @@
     justify-content: center;
 }
 
-.input {
+input, button {
     margin: 20px;
+    width: 250px;
+    max-width: 250px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 16px;
+    border-color: #00CED1;
+}
+
+button {
+    background-color: white;
+}
+
+.input__error {
+    border-color: red;
 }

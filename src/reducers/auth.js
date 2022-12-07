@@ -1,12 +1,12 @@
 import { AUTH } from '../constants/action-types';
+import { NOT_AUTH_USER_ID } from '../constants/primitives';
 
 const initialState = {
-    login: '',
-    password: '',
+    userId: NOT_AUTH_USER_ID,
     isLoading: false
 };
 
-export const notification = (state = initialState, action) => {
+export const auth = (state = initialState, action) => {
     switch (action.type) {
         case AUTH.SEND_LOGIN_DATA_REQUEST: {
             return {
@@ -19,8 +19,15 @@ export const notification = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                login: action.login,
-                password: action.password
+                userId: action.userId
+            };
+        }
+
+        case AUTH.SEND_LOGIN_DATA_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+                userId: NOT_AUTH_USER_ID
             };
         }
 
@@ -29,4 +36,4 @@ export const notification = (state = initialState, action) => {
     }
 };
 
-export default notification;
+export default auth;

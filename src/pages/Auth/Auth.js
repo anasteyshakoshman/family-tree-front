@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { MIN_LENGTH_LOGIN_DATA } from '../../constants/primitives';
+import './Auth.css';
 
 const Auth = (props) => {
     const { isLoading, sendLoginData } = props;
@@ -13,13 +14,13 @@ const Auth = (props) => {
         password: false
     });
 
-    const handleChangeLogin = useCallback((newLogin) => {
-        setLogin(newLogin);
-    }, [login]);
+    const handleChangeLogin = useCallback((event) => {
+        setLogin(event.target.value);
+    }, []);
 
-    const handleChangePassword = useCallback((newPassword) => {
-        setPassword(newPassword);
-    }, [password]);
+    const handleChangePassword = useCallback((event) => {
+        setPassword(event.target.value);
+    }, []);
 
     const handleSubmit = useCallback(() => {
         const isValidLogin = isValidString(login);
@@ -34,8 +35,13 @@ const Auth = (props) => {
             return;
         }
 
-        sendLoginData(login, password);
-    }, [login, password]);
+        sendLoginData(login, password)
+            .then(res => {
+                if (res) {
+                    console.log(props.history);
+                }
+            })
+    }, [login, password, sendLoginData]);
 
     const isValidString = (str) => {
         return str.length >= MIN_LENGTH_LOGIN_DATA;
@@ -62,6 +68,7 @@ const Auth = (props) => {
           <button
               name='submit'
               type='submit'
+              // className='button'
               disabled={isLoading}
               onClick={handleSubmit}>
               Войти
@@ -74,6 +81,9 @@ Auth.propTypes = {
     login: PropTypes.string,
     password: PropTypes.string,
     isLoading: PropTypes.bool.isRequired,
+    history: PropTypes.shape({
+        replace: PropTypes.func.isRequired
+    }).isRequired,
     sendLoginData: PropTypes.func.isRequired
 };
 

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Main from '../pages/Main/Main';
-import { } from '../actions';
+import { getTreeByUserId } from '../actions';
 
 export default connect(
     state => ({
-        // props
+        userId: state.auth.userId
     }),
     dispatch => bindActionCreators({
-        // actions
+        getTreeByUserId
     }, dispatch)
 )(Main);

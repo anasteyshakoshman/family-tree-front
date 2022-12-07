@@ -1,4 +1,4 @@
-import { NOTIFICATION } from '../constants/action-types';
+import { AUTH, NOTIFICATION } from '../constants/action-types';
 
 const initialState = {
     message: ''
@@ -6,7 +6,8 @@ const initialState = {
 
 export const notification = (state = initialState, action) => {
     switch (action.type) {
-        case NOTIFICATION.SET_MESSAGE: {
+        case NOTIFICATION.SET_MESSAGE:
+        case AUTH.SEND_LOGIN_DATA_FAILURE: {
             return {
                 ...state,
                 message: action.message
